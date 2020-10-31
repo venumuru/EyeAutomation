@@ -63,8 +63,16 @@ public class TestNgHooks extends WebDriverServiceImpl{
 		tlDriver.set(driver);		
 		setLanguage("en");
 		getDriver().manage().window().maximize();
-
-		getDriver().get(properties.getProperty("URL"));
+		String url = properties.getProperty("URL");
+		String env = System.getProperty("Environment");
+		switch (env) {
+			case "Dev":
+				url = properties.getProperty("Dev_URL");
+				break;
+			default:
+				properties.getProperty("URL");
+		}
+		getDriver().get(url);
 		getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		
 
