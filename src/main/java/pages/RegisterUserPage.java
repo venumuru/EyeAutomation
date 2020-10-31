@@ -21,7 +21,8 @@ public class RegisterUserPage extends TestNgHooks{
 	
 	@When("Enter user name in the Registration Page")
 	public RegisterUserPage typeUserName(String userName) {
-		type(locateElement(language.getProperty("register_userName")),userName);
+		long timestamp = java.time.Instant.now().getEpochSecond();
+		type(locateElement(language.getProperty("register_userName")),userName+"_"+timestamp);
 		return new RegisterUserPage();
 	}
 
