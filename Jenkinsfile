@@ -28,7 +28,7 @@ pipeline {
 
     stage('Sent report') {
       steps {
-        emailext(subject: 'Automation run report', body: 'Please find the automation run report', from: 'mech.venugopalm@gmail.com', to: 'mech.venugopalm@gmail.com')
+        emailext(subject: '$DEFAULT_SUBJECT', body: '$DEFAULT_CONTENT', from: 'mech.venugopalm@gmail.com', to: '$DEFAULT_RECIPIENTS')
       }
     }
 
