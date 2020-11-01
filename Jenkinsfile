@@ -10,6 +10,9 @@ pipeline {
     }
 
     stage('Smoke Test') {
+      when {
+        branch 'master'
+      }
       steps {
         echo 'Smoke test is going to start'
         git(url: 'https://github.com/venumuru/EyeAutomation', branch: 'master', poll: true)
