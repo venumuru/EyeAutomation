@@ -4,7 +4,7 @@ pipeline {
     stage('Pull QA Code') {
       steps {
         echo 'Pull QA code from GIT'
-        git(url: 'https://github.com/venumuru/EyeAutomation', branch: 'master', poll: true)
+        git(url: 'https://github.com/venumuru/LeafTapsAutomation', branch: 'master', poll: true)
         bat(script: 'mvn install', label: 'Dev')
       }
     }
@@ -15,8 +15,8 @@ pipeline {
       }
       steps {
         echo 'Smoke test is going to start'
-        git(url: 'https://github.com/venumuru/EyeAutomation', branch: 'master', poll: true)
-        bat(script: 'mvn test -DEnvironment=QA', label: 'QA Smoke')
+        git(url: 'https://github.com/venumuru/LeafTapsAutomation', branch: 'master', poll: true)
+        bat(script: 'mvn test', label: 'QA Smoke')
       }
     }
 
