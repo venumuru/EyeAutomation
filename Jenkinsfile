@@ -11,7 +11,7 @@ pipeline {
 
     stage('Smoke Test') {
       when {
-        branch 'master'
+        branch 'Dev'
       }
       steps {
         echo 'Smoke test is going to start'
@@ -23,7 +23,13 @@ pipeline {
     stage('Ceritication') {
       steps {
         input(message: 'Are you sure to certify this?', ok: 'Yes')
-        waitUntil()
+        waitUntil(initialRecurrencePeriod: 10)
+      }
+    }
+
+    stage('Sent report') {
+      steps {
+        emailext(subject: 'Automation run report', attachLog: true, body: 'Please find the automation run report', from: 'mech.venugopalm@gmail.com', replyTo: 'mech.venugopalm@gmail.com', to: 'mech.venugopalm@gmail.com')
       }
     }
 
